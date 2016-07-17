@@ -32,18 +32,17 @@ balanced.range = range;
 function range(a, b, str) {
   var ais = [];
   var bis = [];
-  var fakeA
 
   for (var i = 0; i < str.length; i++) {
     if (str.substring(i, i + a.length) === a) {
       if ((bis.length && i < bis[bis.length]) || !bis.length) {
         ais.push(i);
       } else {
-        fakeA = true;
+        break;
       }
     }
 
-    if (str.substring(i, i + b.length) === b && i > ais[0] && bis.length < ais.length && !fakeA) {
+    if (str.substring(i, i + b.length) === b && i > ais[0] && bis.length < ais.length) {
       bis.push(i);
     }
   }
@@ -52,5 +51,5 @@ function range(a, b, str) {
     return;
   }
 
-  return [ais[ais.length - bis.length], bis[bis.length - 1]]
+  return [ais[ais.length - bis.length], bis[bis.length - 1]];
 }
