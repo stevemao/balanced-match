@@ -21,7 +21,6 @@ function maybeMatch(reg, str) {
 
 balanced.range = range;
 function range(a, b, str) {
-  debugger
   var begs, beg, left, right, result;
   // initial a index and b index
   var ai = str.indexOf(a);
@@ -30,15 +29,15 @@ function range(a, b, str) {
   var i = ai;
 
   // make sure there is an a in the str and b is not at the first position
-  if (ai >= 0 && bi > 0) {
+  if (ai !== -1 && bi !== -1) {
     // collection of a indexes
     begs = [];
     // left position
     left = str.length;
 
-    // i must be >=0 but < than char length
+    // i must not be -1
     // and there must be no result
-    while (i < str.length && i >= 0 && ! result) {
+    while (i !== -1 && !result) {
       if (i == ai) {
         // add another a index to begs
         begs.push(i);
@@ -63,7 +62,7 @@ function range(a, b, str) {
       }
 
       // if a index is greater than 0 and smaller than b index, i become a index.
-      i = ai < bi && ai >= 0 ? ai : bi;
+      i = ai < bi && ai !== -1 ? ai : bi;
     }
 
     // if there are still something in begs, we got a result!
@@ -75,4 +74,4 @@ function range(a, b, str) {
   return result;
 }
 
-range('{', '}', 'e{{few}bb')
+balanced('{', '}', 'pre{body{in}post')
