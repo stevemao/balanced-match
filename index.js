@@ -66,7 +66,7 @@ function range(a, b, str) {
       i = ai < bi && ai >= 0 ? ai : bi;
     }
 
-    // if there are still something in begs
+    // if there are still something in begs, we got a result!
     if (begs.length) {
       result = [ left, right ];
     }
