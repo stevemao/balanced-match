@@ -3,6 +3,10 @@ function balanced(a, b, str) {
   if (a instanceof RegExp) a = maybeMatch(a, str);
   if (b instanceof RegExp) b = maybeMatch(b, str);
 
+  if (!a || !b) {
+    return;
+  }
+
   var r = range(a, b, str);
 
   if (r) {
@@ -28,7 +32,7 @@ function balanced(a, b, str) {
 
 function maybeMatch(reg, str) {
   var m = str.match(reg);
-  return m ? m[0] : '';
+  return m ? m[0] : null;
 }
 
 balanced.range = range;
