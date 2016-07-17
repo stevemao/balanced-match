@@ -27,15 +27,18 @@ balanced.range = range;
 function range(a, b, str) {
   var ais = [];
   var bis = [];
-  var left;
-  var right;
+  var fakeA
 
   for (var i = 0; i < str.length; i++) {
-    if (str.substring(i, i + a.length) === a && ((bis.length && i < bis[bis.length]) || !bis.length)) {
-      ais.push(i);
+    if (str.substring(i, i + a.length) === a) {
+      if ((bis.length && i < bis[bis.length]) || !bis.length) {
+        ais.push(i);
+      } else {
+        fakeA = true;
+      }
     }
 
-    if (str.substring(i, i + b.length) === b && i > ais[0] && bis.length < ais.length) {
+    if (str.substring(i, i + b.length) === b && i > ais[0] && bis.length < ais.length && !fakeA) {
       bis.push(i);
     }
   }
@@ -44,12 +47,5 @@ function range(a, b, str) {
     return;
   }
 
-  if (ais.length === bis.length) {
-    return [ais[0], bis[bis.length - 1]];
-  } else {
-    return [ais[ais.length - bis.length], bis[bis.length - 1]]
-  }
+  return [ais[ais.length - bis.length], bis[bis.length - 1]]
 }
-
-
-console.log(balanced('{', '}', 'pre{{first}in{second}post'));
