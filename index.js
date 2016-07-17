@@ -11,8 +11,6 @@ function balanced(a, b, str) {
   var r = range(a, b, str);
 
   if (r) {
-    var body;
-
     return {
       start: r[0],
       end: r[1],
