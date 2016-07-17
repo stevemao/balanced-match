@@ -13,22 +13,14 @@ function balanced(a, b, str) {
   if (r) {
     var body;
 
-    if (r[0] + a.length < r[1]) {
-      body = str.substring(r[0] + a.length, r[1]);
-    } else {
-      body = '';
-    }
-
     return {
       start: r[0],
       end: r[1],
       pre: str.substring(0, r[0]),
-      body: body,
+      body: str.slice(r[0] + a.length, r[1]),
       post: str.substring(r[1] + b.length)
     }
   }
-
-  return;
 }
 
 function maybeMatch(reg, str) {
