@@ -1,5 +1,8 @@
 module.exports = balanced;
 function balanced(a, b, str) {
+  if (a instanceof RegExp) a = maybeMatch(a, str);
+  if (b instanceof RegExp) b = maybeMatch(b, str);
+
   var r = range(a, b, str);
 
   if (r) {
@@ -21,6 +24,11 @@ function balanced(a, b, str) {
   }
 
   return;
+}
+
+function maybeMatch(reg, str) {
+  var m = str.match(reg);
+  return m ? m[0] : '';
 }
 
 balanced.range = range;
